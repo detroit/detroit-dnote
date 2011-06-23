@@ -1,0 +1,16 @@
+---
+name : detroit-dnote
+title: Detroit DNote
+
+contact: trans <transfire@gmail.com>
+
+description:
+  DNote plugin for Detroit build system.
+
+resources:
+  home: http://detroit.github.com/
+  code: http://github.com/detroit/detroit-dnote
+
+copyright:
+  (c) 2011 Thomas Sawyer
+

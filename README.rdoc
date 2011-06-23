@@ -1,0 +1,29 @@
+= Detroit DNote Tool
+
+
+== DESCRIPTION
+
+The Developer's Notes tool goes through you source files
+and compiles a list of any labeled comments. Labels are
+single word prefixes to a comment ending in a colon.
+
+By default label supported are TODO, FIXME, OPTIMIZE
+and DEPRECATE.
+
+A variety of output formats are supported including HTML,
+XML, Markdown and RDoc's simple markup format.
+
+
+== INSTALL
+
+  $ gem install detroit-dnote
+
+
+== COPYRIGHT
+
+Copyright (c) 2011 Thomas Sawyer
+
+GPL v.3 license
+
+See COPYING.rdoc and GPL3.txt file for details.
+
