@@ -1,2 +1,5 @@
+.reap/digest
+.yardoc
+log
+doc
 tmp
-site/doc
