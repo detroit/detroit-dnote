@@ -13,17 +13,22 @@ and DEPRECATE.
 A variety of output formats are supported including HTML,
 XML, Markdown and RDoc's simple markup format.
 
+See http://rubyworks.github.com/dnote for more information.
+
 
 == INSTALL
+
+Per the usual gem install process:
 
   $ gem install detroit-dnote
 
 
 == COPYRIGHT
 
-Copyright (c) 2011 Thomas Sawyer
+Copyright (c) 2011 Thomas Sawyer, Rubyworks
 
-GPL v.3 license
+Detroit Dnote is distributable in accordance with the *GPL v3*
+open source license.
 
 See COPYING.rdoc and GPL3.txt file for details.
 

@@ -1,16 +1,27 @@
 ---
-name : detroit-dnote
-title: Detroit DNote
+name   : detroit-dnote
+version: 0.0.1
 
-contact: trans <transfire@gmail.com>
+title  : Detroit DNote
+summary: DNote plugin for Detroit
 
 description:
   DNote plugin for Detroit build system.
+  Extract devleoper's notes from source
+  in documentation phase.
+
+requirements:
+  - dnote
+  - detroit
 
 resources:
-  home: http://detroit.github.com/
+  home: http://detroit.github.com
   code: http://github.com/detroit/detroit-dnote
+  mail: http://groups.google.com/group/rubyworks-mailinglist
 
-copyright:
-  (c) 2011 Thomas Sawyer
+authors:
+  - T.Sawyer <transfire@gmail.com>
+
+copyrights:
+  - (c) 2011 Thomas Sawyer, Rubyworks (GPL3)
 
