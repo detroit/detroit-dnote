@@ -1,26 +1,21 @@
 module Detroit
 
-  #
+  # Convenience constructor method.
   def DNote(options={})
     DNote.new(options)
   end
 
-  # The Developmer's Notes tool goes through you source files
+  # The Developmer's Notes tool goes through source files
   # and compiles a list of any labeled comments. Labels are
-  # single word prefixes to a comment ending in a colon.
-  # For example, you might note somewhere in your code:
+  # all-caps single word prefixes to a comment ending in a
+  # colon and space.
   #
-  # By default this label supports the TODO, FIXME, OPTIMIZE
-  # and DEPRECATE.
-  #
-  # Output is a set of files in HTML, XML and RDoc's simple
-  # markup format. This plugin can run automatically if there
-  # is a +notes/+ directory in the project's log directory.
+  # Common labels are `TODO`, `FIXME` and `OPTIMIZE`.
   #
   class DNote < Tool
 
     # not that this is necessary, but ...
-    #available do |project|
+    # def self.available(project)
     #  begin
     #    require 'dnote'
     #    require 'dnote/format'
@@ -30,14 +25,17 @@ module Detroit
     #  end
     #end
 
+    #
+    DEFAULT_FILES = "**/*.rb"
+
     # Default note labels to looked for in source code.
     DEFAULT_LABELS = ['TODO', 'FIXME', 'OPTIMIZE', 'DEPRECATE']
 
+    # Specific labels to document.
+    attr_accessor :labels
+
     # File paths to search.
     attr_accessor :files
-
-    # Labels to document. Defaults are: TODO, FIXME, OPTIMIZE and DEPRECATE.
-    attr_accessor :labels
 
     # Exclude paths.
     attr_accessor :exclude
@@ -45,125 +43,126 @@ module Detroit
     # Ignore paths based on any part of pathname.
     attr_accessor :ignore
 
-    # Output directory to save notes file. Defaults to <tt>dnote/</tt> under
-    # the project log directory (eg. <tt>log/dnote/</tt>).
-    attr_reader :output
-
-    # Formats (xml, html, rdoc).
-    attr_accessor :formats
-
-    # Title to use if temaplte can use it.
+    # Title to use if template can use it.
     attr_accessor :title
 
     # Number of context lines to display.
     attr_accessor :lines
 
+    # Output is either a file name with a clear extension to infer type
+    # or a list of such file names, or a hash mapping file name to type.
     #
-    def output=(path)
-      @output = Pathname.new(path)
+    #   output: NOTES.rdoc
+    #
+    #   output:
+    #     - NOTES.rdoc
+    #     - site/notes.html
+    #
+    #   output:
+    #     NOTES: markdown
+    #     site/notes.html: html
+    #
+    # Recognized formats include `xml`, `html` and `rdoc` among others.
+    attr_accessor :output
+
+
+    #  A S S E M B L Y  S T A T I O N S
+
+    # Attach document method to assembly station.
+    def station_document
+      document
     end
 
-    #
-    #def dnote
-    #  @dnote ||= ::DNote::Site.new(files, :labels=>labels, :formats=>formats, :output=>output)
-    #end
+    # Attach reset method to assembly station.
+    def station_reset
+      reset
+    end
 
-    # TODO: How can this be done? Problem is that DNote figures out the 
-    # final filename (except index), and there is no simplistic way to get that.
+    # Attach purge method to assembly station.
+    def station_purge
+      purge
+    end
+
+
+    #  S E R V I C E  M E T H O D S
+
+    # Check the output file and see if they are older than
+    # the input files.
+    #
+    # @return [Boolean] whether output is up-to-date
     def current?
-      return false
-      #if outofdate?(output, *dnote_session.files)
-      #  false
-      #else
-      #  "DNotes are current (#{output})"
-      #end
+      output_mapping.each do |file, format|
+        return false if outofdate?(file, *dnote_session.files)
+      end
+      "DNotes are current (#{output})"
     end
 
     # Generate notes documents.
-    #--
-    # TODO: Is #trial? correct?
-    #++
     def document
-      mkdir_p(output)
+      session = dnote_session
 
-      session = ::DNote::Session.new do |s|
-        s.paths   = files
-        s.exclude = exclude
-        s.ignore  = ignore
-        s.labels  = labels #|| DEFAULT_LABELS   
-        s.title   = title
-        s.context = lines
-        s.output  = output
-        s.dryrun  = trial?
-      end
+      output_mapping.each do |file, format|
+        #next unless verify_format(format)
 
-      formats.each do |format|
-        if format == 'index'
-          session.format = 'html'
-          session.output = File.join(self.output, 'index.html')
-        else
-          session.format = format
-        end
+        mkdir_p(File.dirname(file))
+
+        session.output = file
+        session.format = format
         session.run
-        report "Updated #{output.to_s.sub(Dir.pwd+'/','')}" #unless trial?
-      end
 
-      #files = files.map{ |f| Dir[f] }.flatten
-      #notes = ::DNote::Notes.new(files, :labels=>labels)
-      #[formats].flatten.each do |format|
-      #  if format == 'index'
-      #    format = 'html'
-      #    output = File.join(self.output, 'index.html')
-      #  end
-      #  format = ::DNote::Format.new(notes, :format=>format, :output=>output.to_s, :title=>title, :dryrun=>trial?)
-      #  format.render
-      #  report "Updated #{output.to_s.sub(Dir.pwd+'/','')}" unless trial?
-      #end
+        report "Updated #{file.sub(Dir.pwd+'/','')}"
+      end
     end
 
-    # Reset output directory, marking it as out-of-date.
+    # Reset output files, marking them as out-of-date.
     def reset
-      if directory?(output)
-        utime(0,0,output)
-        report "Marked #{output}"
+      output.each do |file, format|
+        if File.exist?(file)
+          utime(0,0,file)
+          report "Marked #{file} as out-of-date."
+        end
       end
     end
 
     # Remove output files.
     def purge
-      if File.directory?(output) && safe?(output)
-        rm_r(output)
-        report "Removed #{output}"
+      output.each do |file, format|
+        if File.exist?(file)
+          rm(file)
+          report "Removed #{file}"
+        end
       end
-
-      #if File.directory?(output)
-      #  formats.each do |format|
-      #    ext = ::DNote::Format::EXTENSIONS[format] || format
-      #    file = (output + "notes.#{ext}").to_s
-      #    rm(file) if File.exist?(file)
-      #  end
-      #  file = (output + "index.html").to_s
-      #  rm(file) if File.exist?(file)
-      #  puts "Removed #{output}"
-      #end
     end
 
-    # Attach document method to standard assembly station.
-    def station_document
-      document
+  private
+
+    # Convert output into a hash of `file => format`.
+    #++
+    # TODO: apply_naming_policy ?
+    #--
+    def output_mapping
+      @output_mapping ||= (
+        hash = {}
+        case output
+        when Array
+          output.each do |path|
+            hash[path] = format(path)
+          end
+        when String
+          hash[output] = format(output)
+        when Hash
+          hash = output
+        end
+        hash
+      )
     end
 
-    # Attach reset method to standard assembly station.
-    def station_reset
-      reset
+    #
+    def format(file)
+      type = File.extname(file).sub('.','')
+      type = DEFAULT_FORMAT if type.empty?
+      type
     end
-
-    # Attach purge method to standard assembly station.
-    def station_purge
-      purge
-    end
-
-    private
 
     #
     def dnote_session
@@ -171,10 +170,9 @@ module Detroit
         s.paths   = files
         s.exclude = exclude
         s.ignore  = ignore
-        s.labels  = labels #|| DEFAULT_LABELS   
+        s.labels  = labels
         s.title   = title
         s.context = lines
-        s.output  = output
         s.dryrun  = trial?
       end
     end
@@ -187,13 +185,11 @@ module Detroit
 
     #
     def initialize_defaults
-      @files   = "**/*.rb"
-      @output  = project.log + 'dnote'
-      @formats = ['index']
+      @files   = DEFAULT_FILES
+      @output  = project.log + 'dnotes.html'
       @labels  = nil #DEFAULT_LABELS
     end
 
   end
 
 end
-

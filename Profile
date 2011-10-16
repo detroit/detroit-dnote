@@ -1,6 +1,6 @@
 ---
 name   : detroit-dnote
-version: 0.0.1
+version: 0.1.0
 
 title  : Detroit DNote
 summary: DNote plugin for Detroit
