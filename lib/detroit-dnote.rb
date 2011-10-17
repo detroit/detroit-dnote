@@ -67,25 +67,6 @@ module Detroit
     # Recognized formats include `xml`, `html` and `rdoc` among others.
     attr_accessor :output
 
-
-    #  A S S E M B L Y  S T A T I O N S
-
-    # Attach document method to assembly station.
-    def station_document
-      document
-    end
-
-    # Attach reset method to assembly station.
-    def station_reset
-      reset
-    end
-
-    # Attach purge method to assembly station.
-    def station_purge
-      purge
-    end
-
-
     #  S E R V I C E  M E T H O D S
 
     # Check the output file and see if they are older than
@@ -134,6 +115,23 @@ module Detroit
           report "Removed #{file}"
         end
       end
+    end
+
+    #  A S S E M B L Y  S T A T I O N S
+
+    # Attach document method to assembly station.
+    def station_document
+      document
+    end
+
+    # Attach reset method to assembly station.
+    def station_reset
+      reset
+    end
+
+    # Attach purge method to assembly station.
+    def station_purge
+      purge
     end
 
   private
@@ -190,6 +188,12 @@ module Detroit
       @files   = DEFAULT_FILES
       @output  = project.log + 'dnotes.html'
       @labels  = nil #DEFAULT_LABELS
+    end
+
+  public
+
+    def self.man_page
+      File.dirname(__FILE__)+'/../man/detroit-dnote.5'
     end
 
   end
