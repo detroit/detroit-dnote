@@ -7,7 +7,7 @@
 \fBdetroit\-dnote\fR \- extract developers notes from ruby source code
 .
 .SH "DESCRIPTION"
-The DNote plug\-in for Detroit utilize the DNote command line tool to extract notes for source code and construct nicely formated documentation for them\.
+The DNote plug\-in for Detroit utilize the DNote command line tool to extract notes from source code and construct nicely formated documentation out of it\.
 .
 .SH "OPTIONS"
 The following options can be used in the Detroit assembly file for defining a dnote service\.
@@ -35,7 +35,7 @@ The following options can be used in the Detroit assembly file for defining a dn
 .
 .IP "" 0
 .
-.SH "Examples:"
+.SH "EXAMPLES"
 The simplist entry is
 .
 .IP "" 4
@@ -89,15 +89,26 @@ A fuller example might look something like this\.
 .nf
 
  dnote:
-   labels: [TODO, THINK, \'FIX\']
+   labels: [TODO, THINK, FIX]
    files: [lib, test]
    exclude:
      \- lib/foo/templates
-   ignore: [\'*\.yml\']
+   ignore: [\.yml]
    output: log/NOTES\.rdoc
    lines: 5
 .
 .fi
+.
+.IP "" 0
+.
+.SH "RESOURCES"
+For more information:
+.
+.IP "\(bu" 4
+API Documentation \fIhttp://rubydoc\.info/gems/detroit\-dnote\fR
+.
+.IP "\(bu" 4
+Development Site \fIhttp://github\.com/detroit/detroit\-dnote\fR
 .
 .IP "" 0
 .

@@ -31,7 +31,7 @@ for defining a dnote service.
     Recognized extensions include `xml`, `html` and `rdoc` among others.
 
 
-## Examples:
+## EXAMPLES
 
 The simplist entry is
 
@@ -62,6 +62,15 @@ A fuller example might look something like this.
        ignore: [.yml]
        output: log/NOTES.rdoc
        lines: 5
+
+
+## RESOURCES
+
+For more information:
+
+  * [API Documentation](http://rubydoc.info/gems/detroit-dnote)
+
+  * [Development Site](http://github.com/detroit/detroit-dnote)
 
 
 ## COPYRIGHT
