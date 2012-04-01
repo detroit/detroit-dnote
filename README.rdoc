@@ -1,8 +1,8 @@
 = Detroit DNote Tool
 
-{Website}[http://rubyworks.github.com/dnote] /
-{Report Issue}[http://github.com/rubyworks/dnote/issues] /
-{Repository}[http://github.com/rubyworks/dnote]
+{Website}[http://rubyworks.github.com/detroit-dnote] /
+{Report Issue}[http://github.com/rubyworks/detroit-dnote/issues] /
+{Repository}[http://github.com/rubyworks/detroit-dnote]
 
 
 == Description
