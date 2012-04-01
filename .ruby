@@ -26,8 +26,9 @@ revision: 0
 created: '2011-10-16'
 summary: DNote plugin for Detroit
 title: Detroit DNote
-version: 0.1.0
+version: 0.2.0
 name: detroit-dnote
+suite: detroit
 description: DNote plugin for Detroit build system. Extract devleoper's notes from
   source in documentation phase.
 organization: rubyworks

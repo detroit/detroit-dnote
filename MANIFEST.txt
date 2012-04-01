@@ -6,3 +6,4 @@ man/detroit-dnote.5.html
 man/detroit-dnote.5.ronn
 LICENSE.txt
 README.rdoc
+NOTICE.rdoc
