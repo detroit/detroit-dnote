@@ -2,11 +2,6 @@ require 'detroit/tool'
 
 module Detroit
 
-  # Convenience constructor method.
-  def DNote(options={})
-    DNote.new(options)
-  end
-
   # The Developmer's Notes tool goes through source files
   # and compiles a list of any labeled comments. Labels are
   # all-caps single word prefixes to a comment ending in a
@@ -16,8 +11,8 @@ module Detroit
   #
   class DNote < Tool
 
-    # not that this is necessary, but ...
-    # def self.available(project)
+    # not that this is not necessary, but ...
+    # def self.available?(project)
     #  begin
     #    require 'dnote'
     #    require 'dnote/format'
@@ -117,29 +112,33 @@ module Detroit
       end
     end
 
-    #  A S S E M B L Y  S T A T I O N S
+    # A S S E M B L Y  M E T H O D S
 
-    # Attach document method to assembly station.
-    def station_document
-      document
+    #
+    def assemble?(station, options={})
+      case station
+      when :document then true
+      when :reset    then true
+      when :purge    then true
+      end
     end
 
-    # Attach reset method to assembly station.
-    def station_reset
-      reset
-    end
-
-    # Attach purge method to assembly station.
-    def station_purge
-      purge
+    #
+    def assemble(station, options={})
+      case station
+      when :document then document
+      when :reset    then reset
+      when :purge    then purge
+      end
     end
 
   private
 
-    # Convert output into a hash of `file => format`.
-    #++
     # TODO: apply_naming_policy ?
-    #--
+
+    #
+    # Convert output into a hash of `file => format`.
+    #
     def output_mapping
       @output_mapping ||= (
         hash = {}
