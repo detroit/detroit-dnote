@@ -4,6 +4,5 @@ lib/detroit-dnote.rb
 man/detroit-dnote.5
 man/detroit-dnote.5.html
 man/detroit-dnote.5.ronn
+LICENSE.txt
 README.rdoc
-GPL3.txt
-COPYING.txt
