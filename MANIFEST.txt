@@ -6,4 +6,4 @@ man/detroit-dnote.5.html
 man/detroit-dnote.5.ronn
 README.rdoc
 GPL3.txt
-COPYING.rdoc
+COPYING.txt
