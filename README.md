@@ -1,11 +1,15 @@
-= Detroit DNote Tool
+# Detroit DNote Tool
 
-{Website}[http://rubyworks.github.com/detroit-dnote] /
-{Report Issue}[http://github.com/rubyworks/detroit-dnote/issues] /
-{Repository}[http://github.com/rubyworks/detroit-dnote]
+[Website](http://rubyworks.github.com/detroit-dnote) /
+[Report Issue](http://github.com/rubyworks/detroit-dnote/issues) /
+[Development](http://github.com/rubyworks/detroit-dnote)
+
+[![Build Status](https://secure.travis-ci.org/rubyworks/detroit-dnote.png)](http://travis-ci.org/rubyworks/detroit-dnote) 
+[![Gem Version](https://badge.fury.io/rb/detroit-dnote.png)](http://badge.fury.io/rb/detroit-dnote) &nbsp; &nbsp;
+[![Flattr Me](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/324911/Rubyworks-Ruby-Development-Fund)
 
 
-== Description
+## About
 
 The Developer's Notes tool goes through you source files
 and compiles a list of any labeled comments. Labels are
@@ -20,14 +24,16 @@ XML, Markdown and RDoc's simple markup format.
 See http://rubyworks.github.com/dnote for more information.
 
 
-== Installation
+## Installation
 
-Per the usual gem install process:
+### Using RubyGems
 
   $ gem install detroit-dnote
 
 
-== Copyrights
+## Copyrights
+
+Detroit DNote
 
 Copyright (c) 2011 Rubyworks
 
@@ -41,6 +47,5 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
  
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+See COPYING.md file for full details.
 

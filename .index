@@ -1,0 +1,44 @@
+---
+revision: 2013
+type: ruby
+sources:
+- var
+authors:
+- name: T.Sawyer
+  email: transfire@gmail.com
+organizations:
+- name: Rubyworks
+requirements:
+- name: detroit-standard
+- name: dnote
+conflicts: []
+alternatives: []
+resources:
+- type: home
+  uri: http://detroit.github.com
+  label: Homepage
+- type: code
+  uri: http://github.com/detroit/detroit-dnote
+  label: Source Code
+- type: mail
+  uri: http://groups.google.com/group/rubyworks-mailinglist
+  label: Mailing List
+repositories: []
+categories: []
+copyrights:
+- holder: Rubyworks
+  year: '2011'
+  license: GPL-3.0
+customs: []
+paths:
+  lib:
+  - lib
+created: '2011-10-16'
+summary: DNote plugin for Detroit
+title: Detroit DNote
+version: 0.2.1
+name: detroit-dnote
+suite: detroit
+description: DNote plugin for Detroit build system. Extract devleoper's notes from
+  source in documentation phase.
+date: '2013-03-19'
