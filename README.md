@@ -47,5 +47,5 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
  
-See COPYING.md file for full details.
+See LICENSE.txt file for full details.
 
