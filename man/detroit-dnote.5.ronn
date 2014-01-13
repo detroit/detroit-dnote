@@ -3,15 +3,15 @@ detroit-dnote(5) - extract developers notes from ruby source code
 
 ## DESCRIPTION
 
-The DNote plug-in for Detroit utilize the DNote command line tool
+The DNote plug-in for Detroit utilizes the DNote command line tool
 to extract notes from source code and construct nicely formatted
 documentation out of it.
 
 
 ## OPTIONS
 
-The following options can be used in the Detroit assembly file
-for defining a DNote service.
+The following options can be used in the Detroit toolchain file
+for defining a DNote tool instance.
 
   * `labels` - List of labels to document. The default list includes
      `TODO`, `FIXME`, `OPTIMIZE`, and `DEPRECATE`.
@@ -33,7 +33,7 @@ for defining a DNote service.
 
 ## EXAMPLES
 
-The simplest entry is
+The simplest entry needs only an output file.
 
     dnote:
       output: NOTES.rdoc
@@ -50,12 +50,12 @@ If the extension is atypical use a mapping.
      dnote:
        output:
          NOTES: markdown
-         site/notes.html: html
+         site/notes.htm: html
 
 A fuller example might look something like this.
 
      dnote:
-       labels: [TODO, THINK, FIX]
+       labels: [TODO, THINK, FIX, OPTIMIZE]
        files: [lib, test]
        exclude:
          - lib/foo/templates
@@ -75,7 +75,7 @@ For more information:
 
 ## COPYRIGHT
 
-Copyright (c) 2010 Thomas Sawyer, Rubyworks
+Copyright (c) 2010 Rubyworks
 
 Detroit DNote is distributable in accordance with the GPLv3 license.
 
