@@ -9,6 +9,8 @@ authors:
 organizations:
 - name: Rubyworks
 requirements:
+- version: 0.4+
+  name: detroit
 - name: detroit-standard
 - name: dnote
 conflicts: []
@@ -33,12 +35,12 @@ customs: []
 paths:
   lib:
   - lib
-created: '2011-10-16'
-summary: DNote plugin for Detroit
-title: Detroit DNote
-version: 0.2.1
 name: detroit-dnote
-suite: detroit
+title: Detroit DNote
+summary: DNote plugin for Detroit
+created: '2011-10-16'
 description: DNote plugin for Detroit build system. Extract devleoper's notes from
   source in documentation phase.
-date: '2013-03-19'
+suite: detroit
+version: 0.4.0
+date: '2014-01-13'

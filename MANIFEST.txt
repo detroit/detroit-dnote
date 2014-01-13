@@ -1,9 +1,10 @@
 #!mast .index bin demo lib man test spec *.md *.txt
 .index
+demo/01_detroit_dnote.md
 lib/detroit-dnote.rb
 man/detroit-dnote.5
 man/detroit-dnote.5.html
 man/detroit-dnote.5.ronn
-README.md
 NOTICE.md
+README.md
 LICENSE.txt
